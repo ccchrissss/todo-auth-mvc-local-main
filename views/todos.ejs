@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bubblegum+Sans&display=swap" rel="stylesheet">
+    <title>To Do Our To Do List</title>
+</head>
+<body class="todo-body">
+    <div class="todo-container">
+        <div class="top-half">
+            <div class="left-half">
+                <h1>Todos</h1>
+                <ul>
+                <% todos.forEach( el => { %>
+                        <li class='todoItem' data-id='<%=el._id%>'>
+                            <span class='<%= el.completed === true ? 'completed' : 'not'%>'><%= el.todo %></span>
+                            <span class='clicks del'> X </span>
+                            <span class='clicks edit'> Edit </span>
+                            <br />
+                            <!-- <div class="item-edit-input" contenteditable="true"><%= el.todo %></div> -->
+                            <span class="item-edit-input" contenteditable="true"><%= el.todo %></span>
+                            <span class='clicks save'> Save </span>
+                        </li>
+                <% }) %>    
+                </ul>
+            </div>
+            <div class="right-half">
+                <a href="/logout">Logout</a>
+                <h2>You've completed <%= total %> task(s). Great work!</h2>
+                <h2><%= user.userName %> has <%= left %> thing(s) left to do.</h2>
+            </div>
+        </div>
+        <div class="bottom-half">
+            <% if (todos.length < 6) { %>
+            <form action="/todos/createTodo" method='POST'>
+                <input type="text" placeholder="Enter Todo Item" name='todoItem'>
+                <input type="submit">
+            </form>
+            <% } else { %>
+                <h4>Hey! It's time to quit addin' and start doin'.</h4>
+            <% } %>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
