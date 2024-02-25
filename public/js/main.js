@@ -108,11 +108,13 @@ function showEditInputBox() {
 
 async function editItem(){
     // const itemText = this.parentNode.childNodes[1].innerText
-    const itemText = this.parentNode.dataset.id
+    const itemTextID = this.parentNode.dataset.id
 
     const itemTextV2 = this.parentNode.childNodes[11].innerText
 
-    console.log('itemText:', itemText)
+    // const 
+
+    console.log('itemTextID:', itemTextID)
 
 
     console.log(this.parentNode.childNodes)
@@ -129,13 +131,14 @@ async function editItem(){
             method: 'put',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
-                'itemTextFromJS': itemTextV2
+                'itemTextIDFromJS': itemTextID,
+                'itemTextV2FromJS': itemTextV2
             })
           })
         const data = await response.json()
         console.log(data)
 
-        // location.reload()
+        location.reload()
     }catch(err){
         console.log(err)
     }

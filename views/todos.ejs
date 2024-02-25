@@ -18,7 +18,7 @@
                 <ul>
                 <% todos.forEach( el => { %>
                         <li class='todoItem' data-id='<%=el._id%>'>
-                            <span class='<%= el.completed === true ? 'completed' : 'not'%>'><%= el.todo %></span>
+                            <span class='<%= el.completed === true ? 'completed' : 'not'%>'><%= el.todo %> </span>
                             <span class='clicks del'> X </span>
                             <span class='clicks edit'> Edit </span>
                             <br />

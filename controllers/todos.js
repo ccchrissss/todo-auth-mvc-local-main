@@ -56,12 +56,37 @@ module.exports = {
     editItem: async (req, res)=>{
         
         try{
-            await Todo.findOneAndUpdate({_id:req.body.itemTextFromJS})
+            await Todo.findOneAndUpdate(
+                {_id:req.body.itemTextIDFromJS},
+                {$set: { todo: req.body.itemTextV2FromJS }},
+                {
+                    sort: {_id: -1},
+                    upsert: false
+                }
+            )
             console.log('Item Edited')
             res.json('Item Edited')
+
         }catch(err){
             console.log(err)
         }
 
     }
 }    
+
+
+// app.put('/edit-note-monday', (request, response) => {
+//     mealPlanCollection
+//         .updateOne(
+//             {mondaymeal: request.body.itemFromJS},
+//             {$set: { note: request.body.noteFromJS } },
+//         {
+//             sort: {_id: -1},
+//             upsert: false
+//         })
+//         .then(result => {
+//             console.log('Updated note meal plan Monday')
+//             response.json('Updated note meal plan Monday')
+//         })
+//         .catch(error => console.error(error))
+// })
